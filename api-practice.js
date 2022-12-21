@@ -37,18 +37,45 @@
 
 // AXIOS built on top of javascript...is a library for making HTTP requests
 
-axios.get("https://swapi.dev/api/people/1").then((res)=> {
-  console.log("RESPONSE: ", res)
-})
+// axios.get("https://swapi.dev/api/people/1").then((res)=> {
+//   console.log("RESPONSE: ", res)
+// })
 
 
-const getStarWarsPerson = async(id) => {
+// const getStarWarsPerson = async(id) => {
+//   try {
+//     const res = await axios.get(`https://swapi.dev/api/people/${id}`)
+//     console.log(`Star Wars Person ${id} is: `, res.data)
+//   } catch (error) {
+//     console.log("ERROR, bummer", error)
+//   }
+// }
+
+// getStarWarsPerson(10)
+
+
+// const getDadJoke = async () => {
+  //   const config = { headers: { Accept: 'application/json' } }
+  //   const res = await axios.get('https://icanhazdadjoke.com', config)
+  //   // console.log(res.data.joke)
+  //   const newLI = document.createElement('li')
+  //   newLI.append(res.data.jokes)
+  //   jokes.append(newLI)
+  // }
+
+
+
+const getDadJoke = async () => {
+  const jokes = document.getElementById('jokes')
   try {
-    const res = await axios.get(`https://swapi.dev/api/people/${id}`)
-    console.log(`Star Wars Person ${id} is: `, res.data)
+    const config = { headers: { Accept: 'application/json' } }
+    const res = await axios.get('https://icanhazdadjoke.com', config)
+    // console.log(res.data.joke)
+    const newLI = document.createElement('LI')
+    console.log('this is newLI:', newLI)
+    newLI.append(res.data.joke)
+    jokes.append(newLI)
   } catch (error) {
-    console.log("ERROR, bummer", error)
+    console.log('ERROR!: ', error)
   }
 }
-
-getStarWarsPerson(10)
