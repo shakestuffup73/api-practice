@@ -63,34 +63,49 @@
   //   jokes.append(newLI)
   // }
 
-const getNewJoke = async () => {
-  
-  const jokeText = await getDadJoke()
-  console.log('this is jokeText:', jokeText)
-  
-  const newLI = document.createElement('LI')
-  newLI.append(jokeText)
-  console.log('this is newLI:', newLI)
-  
-  const jokes = document.getElementById('jokes')
-  jokes.append(newLI)
-}
+//! Completed Dad Joke API code below
 
-const getDadJoke = async () => {
-  try {
-    const config = { headers: { Accept: 'application/json' } }
-    const res = await axios.get('https://icanhazdadjoke.com', config)
-    // console.log(res.data.joke)
-    return res.data.joke
-  } catch (error) {
-    console.log('ERROR!: ', error)
-    return "No jokes for you, sorry!"
-  }
-}
+// const getNewJoke = async () => {
+  
+//   const jokeText = await getDadJoke()
+//   console.log('this is jokeText:', jokeText)
+  
+//   const newLI = document.createElement('LI')
+//   newLI.append(jokeText)
+//   console.log('this is newLI:', newLI)
+  
+//   const jokes = document.getElementById('jokes')
+//   jokes.append(newLI)
+// }
+
+// const getDadJoke = async () => {
+//   try {
+//     const config = { headers: { Accept: 'application/json' } }
+//     const res = await axios.get('https://icanhazdadjoke.com', config)
+//     // console.log(res.data.joke)
+//     return res.data.joke
+//   } catch (error) {
+//     console.log('ERROR!: ', error)
+//     return "No jokes for you, sorry!"
+//   }
+// }
+
+// window.addEventListener('DOMContentLoaded', (event) => {
+//   console.log('DOM is loaded')
+//   console.log('this is event', event)
+//   const button = document.getElementById('button')
+//   button.addEventListener('click', getNewJoke)
+// })
+
+//* TV MAZE API Search Form & Update
+
 
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('DOM is loaded')
   console.log('this is event', event)
-  const button = document.getElementById('button')
-  button.addEventListener('click', getNewJoke)
+  const form = document.querySelector('#searchForm')
+  form.addEventListener('submit', function(event){
+    event.preventDefault()
+    console.log('Submitted')
+  })
 })
