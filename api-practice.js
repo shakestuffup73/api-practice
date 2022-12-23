@@ -84,9 +84,9 @@ const getDadJoke = async () => {
     return res.data.joke
   } catch (error) {
     console.log('ERROR!: ', error)
+    return "No jokes for you, sorry!"
   }
 }
-
 
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('DOM is loaded')
