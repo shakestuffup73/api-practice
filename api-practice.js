@@ -104,8 +104,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
   console.log('DOM is loaded')
   console.log('this is event', event)
   const form = document.querySelector('#searchForm')
-  form.addEventListener('submit', function(event){
+  form.addEventListener('submit', async function(event){
     event.preventDefault()
-    console.log('Submitted')
+
+    const searchTerm = form.elements.query.value
+    console.log('this is searchTerm', searchTerm)
+
+    const res = await axios.get(`http://api.tvmaze.com/search/shows?q=${searchTerm}`)
+    console.log('this is res.data', res.data)
+    // console.log(res.data[0].show.image.medium)
+
+    // const img = document.createElement('IMG')
+    // img.src = res.data[0].show.image.medium
+    // document.body.append(img)
+    makeImages(res.data)
   })
 })
+
+const makeImages = (results) => {
+  for (let result of results){
+    console.log('this is result', result)
+    const img = document.createElement('IMG')
+    img.src = result.show.image?.medium
+    document.body.append(img) 
+  }
+}
