@@ -99,7 +99,6 @@
 
 //* TV MAZE API Search Form & Update
 
-
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('DOM is loaded')
   console.log('this is event', event)
@@ -110,7 +109,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const searchTerm = form.elements.query.value
     console.log('this is searchTerm', searchTerm)
 
-    const res = await axios.get(`http://api.tvmaze.com/search/shows?q=${searchTerm}`)
+    const config = { params: {q: searchTerm} }
+    const res = await axios.get(`http://api.tvmaze.com/search/shows`, config)
     console.log('this is res.data', res.data)
     // console.log(res.data[0].show.image.medium)
 
@@ -118,14 +118,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // img.src = res.data[0].show.image.medium
     // document.body.append(img)
     makeImages(res.data)
+    form.elements.query.value=''
   })
 })
 
+
 const makeImages = (results) => {
+  const resultsDiv = document.getElementById('resultsDiv')
+  const imageDiv = document.createElement('div')
+  
   for (let result of results){
     console.log('this is result', result)
-    const img = document.createElement('IMG')
+    
+    const img = document.createElement('img')
     img.src = result.show.image?.medium
-    document.body.append(img) 
+
+    imageDiv.appendChild(img)
+
+    // document.body.append(img)
   }
+  resultsDiv.append(imageDiv)
 }
